@@ -1,0 +1,59 @@
+@model Jogador
+
+@{
+    ViewData["Title"] = "Jogador";
+}
+
+<h1>Tela de Jogadores</h1>
+
+<form method="post" action='@Url.Action("Cadastrar")'>
+    
+    <label for="Nome">Nome</label>
+    <input type="text" id="Nome" name="Nome" placeholder="Nome do Jogador" required>
+    
+    <label for="Email">Email</label>
+    <input type="email" id="Email" name="Email" placeholder="Email do Jogador" required>
+    
+    <label for="Senha">Senha</label>
+    <input type="password" id="Senha" name="Senha" placeholder="Informa a senha" required>
+    
+    <label for="IdEquipe">Equipe</label>
+    <select name="IdEquipe" id="IdEquipe" required>
+        <option value="">Selecione uma opção</option>
+        @foreach (Equipe equipe in ViewBag.Equipe)
+        {
+            <option value="@equipe.IdEquipe" >@equipe.Nome</option>
+        }
+    </select>
+
+    <button>Cadastrar</button>
+</form>
+
+<table class="table table-striped table-responsive">
+    <thead>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Equipe</th>
+        <th>Ações</th>
+    </thead>
+
+    <tbody>
+
+        @foreach (Jogador jogador in ViewBag.Jogador)
+        {
+            <tr>
+                <td>@jogador.IdJogador</td>
+                <td>@jogador.Nome</td>
+                <td>@jogador.Email</td>
+                <td>@jogador.Equipe.Nome</td>
+                <td>
+                    <a asp-controller="Jogador" asp-action="Editar" asp-route-id="@jogador.IdJogador">Editar</a>
+                    <a asp-controller="Jogador" asp-action="Excluir" asp-route-id="@jogador.IdJogador">Excluir</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

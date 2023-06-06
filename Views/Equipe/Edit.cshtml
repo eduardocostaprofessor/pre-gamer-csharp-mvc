@@ -1,0 +1,19 @@
+@model Equipe
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Tela de Equipes</h1>
+
+<form method="post" action='@Url.Action("Atualizar")' enctype="multipart/form-data">
+    <input type="hidden" name="IdEquipe" id="IdEquipe" value="@ViewBag.Equipe.IdEquipe">
+
+    <label for="Nome">Nome</label>
+    <input type="text" id="Nome" name="Nome" value="@ViewBag.Equipe.Nome" placeholder="Nome da Equipe" required>
+    
+    <label for="Imagem">Imagem</label>
+    <input type="file" id="Imagem" name="Imagem" value="@ViewBag.Equipe.Imagem">
+
+    <button>Cadastrar</button>
+</form>
