@@ -21,6 +21,9 @@ namespace pre_gamer_mvc.Controllers
         [Route("Listar")] // http://localhost/Jogador/Listar
         public IActionResult Index()
         {
+            // Recupera a sessão
+            ViewBag.UserName = HttpContext.Session.GetString("UserName");
+
             ViewBag.Jogador = c.Jogador.ToList();
             ViewBag.Equipe = c.Equipe.ToList();
 
@@ -47,6 +50,9 @@ namespace pre_gamer_mvc.Controllers
         [Route("Editar/{id}")] // http://localhost/Jogador/Editar
         public IActionResult Editar(int id)
         {
+            // Recupera a sessão
+            ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            
             Jogador jogador = c.Jogador.First(j => j.IdJogador == id);
 
             ViewBag.Jogador = jogador;

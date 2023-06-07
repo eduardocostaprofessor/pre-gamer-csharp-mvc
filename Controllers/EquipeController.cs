@@ -10,7 +10,7 @@ namespace pre_gamer_mvc.Controllers
         private readonly ILogger<EquipeController> _logger;
 
         // instancia o context para acessar o banco de dados
-        public Context c = new Context(); //verificar
+        private readonly Context c = new Context(); //verificar
 
         public EquipeController(ILogger<EquipeController> logger)
         {
@@ -23,6 +23,9 @@ namespace pre_gamer_mvc.Controllers
         [Route("Listar")] // http://localhost/Equipe/Listar
         public IActionResult Index()
         {
+            // recupera a Sessão
+            ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            
             // Variável que armazena as equipes listadas
             ViewBag.Equipe = c.Equipe.ToList();
             // Retorna a view de equipe (TELA)
@@ -72,6 +75,9 @@ namespace pre_gamer_mvc.Controllers
         [Route("Editar/{id}")]
         public IActionResult Editar(int id)
         {
+            // Recupera a sessão
+            ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            
             Equipe equipe = c.Equipe.First(e => e.IdEquipe == id);
 
             ViewBag.Equipe = equipe;

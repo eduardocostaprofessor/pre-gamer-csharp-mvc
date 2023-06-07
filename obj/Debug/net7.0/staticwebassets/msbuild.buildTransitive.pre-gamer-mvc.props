@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../buildMultiTargeting/pre-gamer-mvc.props" />
-</Project>
